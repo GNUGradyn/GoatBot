@@ -14,10 +14,9 @@ builder.Services
     .AddDiscordGateway(options =>
     {
         options.Intents = GatewayIntents.GuildMessages
-                          // | GatewayIntents.DirectMessages
                           | GatewayIntents.MessageContent
-                          // | GatewayIntents.DirectMessageReactions
-                          | GatewayIntents.GuildMessageReactions;
+                          | GatewayIntents.GuildMessageReactions
+                          | GatewayIntents.Guilds;
         options.Token = builder.Configuration["Token"];
     })
     .AddGatewayEventHandlers(typeof(Program).Assembly)

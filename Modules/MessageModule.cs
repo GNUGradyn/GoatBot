@@ -15,7 +15,6 @@ public class MessageModule : ApplicationCommandModule<ApplicationCommandContext>
         public async ValueTask HandleAsync(Message message)
         {
             if (message.Author.Id == client.Id) return;
-            var channel = message.Channel;
             if (message.Content.ToLower().Contains("goat"))
             {
                 await message.Channel.SendMessageAsync("Goat! :D");
