@@ -41,7 +41,7 @@ public class MessageModule : ApplicationCommandModule<ApplicationCommandContext>
             if ((message.Content.ToLower().StartsWith("hug") || message.Content.ToLower().StartsWith("*hug")) && message.MentionedUsers.Select(x => x.Id).Contains(client.Id))
             {
                 await message.AddReactionAsync(new ReactionEmojiProperties("Goatcutie",529749906953338900));
-                await message.Channel.SendMessageAsync($"hugs {message.Author.Id}");
+                await message.Channel.SendMessageAsync($"hugs <@{message.Author.Id}>");
             }
         }
     }
