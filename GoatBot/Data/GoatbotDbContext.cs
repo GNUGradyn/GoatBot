@@ -8,7 +8,7 @@ public class GoatbotDbContext : DbContext
 {
     private IConfiguration _config;
 
-    public DbSet<Driver> Upvotes { get; set; }
+    public DbSet<Driver> Drivers { get; set; }
 
     
     public GoatbotDbContext(IConfiguration config)
