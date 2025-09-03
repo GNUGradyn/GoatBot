@@ -1,4 +1,6 @@
-﻿namespace Goatbot.Models;
+﻿using System;
+
+namespace Goatbot.Models;
 
 public class PermitRequest
 {

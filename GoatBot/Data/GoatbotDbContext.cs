@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Goatbot.Data.DataModels;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace Goatbot.Data;
@@ -7,10 +8,10 @@ public class GoatbotDbContext : DbContext
 {
     private IConfiguration _config;
 
-    public DbSet<Upvotes> Upvotes { get; set; }
+    public DbSet<Driver> Upvotes { get; set; }
 
     
-    public BirdDbContext(IConfiguration config)
+    public GoatbotDbContext(IConfiguration config)
     {
         _config = config;
     }
