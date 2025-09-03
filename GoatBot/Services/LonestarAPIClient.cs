@@ -71,7 +71,7 @@ public class LonestarAPIClient
 
             request.Content = new FormUrlEncodedContent(new[]
             {
-                new KeyValuePair<string, string>("account[0][nid]", _config["LonestarAPI:LonestarAccountNuber"]),
+                new KeyValuePair<string, string>("account[0][nid]", _config["LonestarAPI:LonestarAccountNumber"]),
                 new KeyValuePair<string, string>("apartment_number[0][value]",
                     _config["LonestarAPI:LonestarApartmentNumber"]),
                 new KeyValuePair<string, string>("date_first_issued[0][value][date]",

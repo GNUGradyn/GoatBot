@@ -1,4 +1,6 @@
-﻿namespace Goatbot.Models;
+﻿using System.Collections.Generic;
+
+namespace Goatbot.Models;
 
 public static class LonestarConstants
 {

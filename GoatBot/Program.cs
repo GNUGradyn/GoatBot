@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Discord;
 using Discord.Interactions;
 using Discord.WebSocket;
+using Goatbot.Data;
+using Goatbot.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -42,6 +44,8 @@ public class Program
             .AddSingleton(_config)
             .AddSingleton(_socketConfig)
             .AddSingleton(_client)
+            .AddSingleton<LonestarAPIClient>()
+            .AddDbContext<GoatbotDbContext>()
             .AddSingleton(x => new InteractionService(x.GetRequiredService<DiscordSocketClient>()))
             .BuildServiceProvider();
         await _client.LoginAsync(TokenType.Bot, _config.GetValue<string>("Token"));
