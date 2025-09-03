@@ -1,0 +1,80 @@
+﻿namespace Goatbot.Models;
+
+public static class LonestarConstants
+{
+    public static Dictionary<string, string> StateCodes = new()
+    {
+        { "Alabama", "AL" },
+        { "Alaska", "AK" },
+        { "Arizona", "AZ" },
+        { "Arkansas", "AR" },
+        { "California", "CA" },
+        { "Colorado", "CO" },
+        { "Connecticut", "CT" },
+        { "Delaware", "DE" },
+        { "District Of Columbia", "DC" },
+        { "Florida", "FL" },
+        { "Georgia", "GA" },
+        { "Hawaii", "HI" },
+        { "Idaho", "ID" },
+        { "Illinois", "IL" },
+        { "Indiana", "IN" },
+        { "Iowa", "IA" },
+        { "Kansas", "KS" },
+        { "Kentucky", "KY" },
+        { "Louisiana", "LA" },
+        { "Maine", "ME" },
+        { "Maryland", "MD" },
+        { "Massachusetts", "MA" },
+        { "Michigan", "MI" },
+        { "Minnesota", "MN" },
+        { "Mississippi", "MS" },
+        { "Missouri", "MO" },
+        { "Montana", "MT" },
+        { "Nebraska", "NE" },
+        { "Nevada", "NV" },
+        { "New Hampshire", "NH" },
+        { "New Jersey", "NJ" },
+        { "New Mexico", "NM" },
+        { "New York", "NY" },
+        { "North Carolina", "NC" },
+        { "North Dakota", "ND" },
+        { "Ohio", "OH" },
+        { "Oklahoma", "OK" },
+        { "Oregon", "OR" },
+        { "Pennsylvania", "PA" },
+        { "Rhode Island", "RI" },
+        { "South Carolina", "SC" },
+        { "South Dakota", "SD" },
+        { "Tennessee", "TN" },
+        { "Texas", "TX" },
+        { "Utah", "UT" },
+        { "Vermont", "VT" },
+        { "Virginia", "VA" },
+        { "Washington", "WA" },
+        { "West Virginia", "WV" },
+        { "Wisconsin", "WI" },
+        { "Wyoming", "WY" }
+    };
+
+    public static Dictionary<string, int> VehicleColorCodes = new()
+    {
+        {"White", 112},
+        {"Black", 113},
+        {"Silver", 114},
+        {"Red", 115},
+        {"Gray", 116},
+        {"Blue", 117},
+        {"Beige/Brown", 118},
+        {"Green", 119},
+        {"Yellow/Gold", 120},
+        {"Burnt Orange", 121},
+        {"Purple", 122},
+        {"Burgundy", 123},
+        {"Maroon", 124},
+        {"Other", 125},
+        {"Orange", 1041},
+        {"Pewter", 1042}
+    };
+
+}
