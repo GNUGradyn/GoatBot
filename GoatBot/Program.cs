@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 using Discord;
 using Discord.Interactions;
 using Discord.WebSocket;
+using Goatbot;
 using Goatbot.Data;
 using Goatbot.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -39,7 +41,7 @@ public class Program
 
     public async Task MainAsync()
     {
-        LoadConfig();
+        _config = StaticConfigFactory.LoadConfig();
         _services = new ServiceCollection()
             .AddSingleton(_config)
             .AddSingleton(_socketConfig)
@@ -48,6 +50,7 @@ public class Program
             .AddDbContext<GoatbotDbContext>()
             .AddSingleton(x => new InteractionService(x.GetRequiredService<DiscordSocketClient>()))
             .BuildServiceProvider();
+        await _services.GetRequiredService<GoatbotDbContext>().Database.MigrateAsync();
         await _client.LoginAsync(TokenType.Bot, _config.GetValue<string>("Token"));
         await _handler.AddModulesAsync(Assembly.GetEntryAssembly(), _services); // Add modules
         _client.InteractionCreated += HandleInteraction; // add interaction handler
@@ -104,16 +107,6 @@ public class Program
         await RegisterCommands();
         await SetStatus();
     }
-
-    private void LoadConfig()
-    {
-        var builder = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json", optional: false);
-
-        _config = builder.Build();
-    }
-
     private async Task SetStatus()
     {
         if (!string.IsNullOrEmpty(_config.GetValue<string>("Status:Content"))) await _client.SetGameAsync(_config.GetValue<string>("Status:Content"), type: Enum.Parse<ActivityType>(_config.GetValue<string>("Status:Type")));
