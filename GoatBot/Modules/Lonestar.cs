@@ -45,17 +45,17 @@ public class Lonestar : InteractionModuleBase<SocketInteractionContext>
         
         try
         {
-            // await _lonestarClient.IssuePermit(new PermitRequest
-            // {
-            //     PermitDays = days,
-            //     PlateNumber = driver.PlateNumber,
-            //     Name = driver.Name,
-            //     Email = driver.Email,
-            //     VehicleColorCode = driver.VehicleColorCode,
-            //     VehicleMake = driver.VehicleMake,
-            //     VehicleModel = driver.VehicleModel,
-            //     PlateStateCode = driver.PlateStateCode,
-            // });
+            await _lonestarClient.IssuePermit(new PermitRequest
+            {
+                PermitDays = days,
+                PlateNumber = driver.PlateNumber,
+                Name = driver.Name,
+                Email = driver.Email,
+                VehicleColorCode = driver.VehicleColorCode,
+                VehicleMake = driver.VehicleMake,
+                VehicleModel = driver.VehicleModel,
+                PlateStateCode = driver.PlateStateCode,
+            });
 
             var message = $"Permit issued to {driver.Name} with plate {driver.PlateNumber} for {days} day(s). Lonestar will email {driver.Email}";
 
