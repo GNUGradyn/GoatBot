@@ -43,7 +43,7 @@ public class ColorRoles : InteractionModuleBase<SocketInteractionContext>
         await _reactionRoleMessage.RemoveReactionAsync(reaction.Emote, reaction.UserId);
         if (cachedMessage.Id == _reactionRoleMessage.Id)
         {
-            IRole role;
+            IRole? role = null;
             var emoteAsUnicode = reaction.Emote.Name.ToCharArray();
             if (reaction.Emote.Name == char.ConvertFromUtf32(0x01F1EA)) // E has a special role name because it breaks @everyone to just make it E
             {
@@ -56,6 +56,10 @@ public class ColorRoles : InteractionModuleBase<SocketInteractionContext>
             else if (emoteAsUnicode.Length == 2 && (int)char.ConvertToUtf32(reaction.Emote.Name, 0) >= 0x1F1E6 && (int)char.ConvertToUtf32(reaction.Emote.Name, 0) <= 0x1F1FF) // Regional indicator (surrogate pair since its from discord)
             {
                 role = _HBI.Roles.Single(roleToCheck => roleToCheck.Name == ((char)('A' + (char.ConvertToUtf32(reaction.Emote.Name, 0) - 0x1F1E6))).ToString());
+            }
+            else if (emoteAsUnicode.Length == 2 && emoteAsUnicode[0] == 0xD83D && emoteAsUnicode[1] == 0xDEAB) // Remove all
+            {
+                role = null;
             }
             else // Something else
             {
@@ -71,12 +75,12 @@ public class ColorRoles : InteractionModuleBase<SocketInteractionContext>
             {
                 user = await _HBI.GetUserAsync(reaction.UserId);
             }
-
-            if (user.RoleIds.Contains(role.Id)) return; // User already has that color
+            
+            if (role != null && user.RoleIds.Contains(role.Id)) return; // User already has that color
             var colorRoleIds = _HBI.Roles.Where(roleToCheck => _validChars.Contains(roleToCheck.Name)).Select(foundRole => foundRole.Id);
             var rolesToRemove = user.RoleIds.Where(roleIdFromUser => colorRoleIds.Contains(roleIdFromUser));
             await user.RemoveRolesAsync(rolesToRemove);
-            await user.AddRoleAsync(role);
+            if (role != null) await user.AddRoleAsync(role);
         }
     }
     
@@ -112,5 +116,7 @@ public class ColorRoles : InteractionModuleBase<SocketInteractionContext>
                 await _reactionRoleMessage.AddReactionAsync(emoji);
             }
         }
+
+        await _reactionRoleMessage.AddReactionAsync(new Emoji("\uD83D\uDEAB"));
     }
 }
