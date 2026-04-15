@@ -46,8 +46,7 @@ public class LonestarAPIClient
             new KeyValuePair<string, string>("form_id", _config.GetValue<string>("LonestarAPI:LonestarFormId")),
             new KeyValuePair<string, string>("name", _config.GetValue<string>("LonestarAPI:Username")),
             new KeyValuePair<string, string>("op", _config.GetValue<string>("LonestarAPI:LonestarOp")),
-            new KeyValuePair<string, string>("pass", _config.GetValue<string>("LonestarAPI:Password")),
-            new KeyValuePair<string, string>("permit_number_text", _config.GetValue<string>("LonestarAPI:PermitNumberText")),
+            new KeyValuePair<string, string>("pass", _config.GetValue<string>("LonestarAPI:Password"))
         });
 
         var response = await _httpClient.PostAsync("user", payload);
@@ -120,7 +119,9 @@ public class LonestarAPIClient
                 new KeyValuePair<string, string>("vehicle[0][make]", permitRequest.VehicleMake),
                 new KeyValuePair<string, string>("vehicle[0][model]", permitRequest.VehicleModel),
                 new KeyValuePair<string, string>("vehicle_color[0][tid]", permitRequest.VehicleColorCode.ToString()),
-                new KeyValuePair<string, string>("vin_0[0][value]", String.Empty)
+                new KeyValuePair<string, string>("vin_0[0][value]", String.Empty),
+                new KeyValuePair<string, string>("permit_number_text", _config.GetValue<string>("LonestarAPI:PermitNumberText")),
+
             });
              return request;
         });
