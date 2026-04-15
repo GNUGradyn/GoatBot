@@ -46,7 +46,8 @@ public class LonestarAPIClient
             new KeyValuePair<string, string>("form_id", _config.GetValue<string>("LonestarAPI:LonestarFormId")),
             new KeyValuePair<string, string>("name", _config.GetValue<string>("LonestarAPI:Username")),
             new KeyValuePair<string, string>("op", _config.GetValue<string>("LonestarAPI:LonestarOp")),
-            new KeyValuePair<string, string>("pass", _config.GetValue<string>("LonestarAPI:Password"))
+            new KeyValuePair<string, string>("pass", _config.GetValue<string>("LonestarAPI:Password")),
+            new KeyValuePair<string, string>("permit_number_text", _config.GetValue<string>("LonestarAPI:PermitNumberText")),
         });
 
         var response = await _httpClient.PostAsync("user", payload);
