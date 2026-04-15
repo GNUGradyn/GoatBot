@@ -120,7 +120,7 @@ public class LonestarAPIClient
                 new KeyValuePair<string, string>("vehicle[0][model]", permitRequest.VehicleModel),
                 new KeyValuePair<string, string>("vehicle_color[0][tid]", permitRequest.VehicleColorCode.ToString()),
                 new KeyValuePair<string, string>("vin_0[0][value]", String.Empty),
-                new KeyValuePair<string, string>("permit_number_text", _config.GetValue<string>("LonestarAPI:PermitNumberText")),
+                new KeyValuePair<string, string>("permit_number_text[0][value]", _config.GetValue<string>("LonestarAPI:PermitNumberText")),
 
             });
              return request;
