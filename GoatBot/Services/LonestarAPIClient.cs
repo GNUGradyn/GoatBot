@@ -111,8 +111,8 @@ public class LonestarAPIClient
                 new KeyValuePair<string, string>("permit_contact_phone[0][value]", String.Empty),
                 new KeyValuePair<string, string>("name_0[0][value]", permitRequest.Name),
                 new KeyValuePair<string, string>("permit_length_days[0][value]",
-                    (permitRequest.PermitDays + 1)
-                    .ToString()), // +1 to account for how 1 day will end at the end of the day, not 1 night
+                    (permitRequest.PermitDays)
+                    .ToString()),
                 new KeyValuePair<string, string>("permit_length_hours[0][value]", String.Empty),
                 new KeyValuePair<string, string>("permit_number_text[0][value]", String.Empty),
                 new KeyValuePair<string, string>("permit_type[0][value]", _config.GetValue<string>("LonestarAPI:PermitType")),
